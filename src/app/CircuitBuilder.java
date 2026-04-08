@@ -48,7 +48,7 @@ public class CircuitBuilder {
             for (JsonNode resistanceNode : node.get("composants")) {
                 composants.add(lireComposant(resistanceNode));
             }
-                return new CircuitSerie(composants);
+            return new CircuitSerie(composants);
         }
         throw new IllegalArgumentException("Type de circuit inconnu : " + type);
     }
