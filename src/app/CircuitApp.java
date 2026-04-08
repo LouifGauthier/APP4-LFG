@@ -16,29 +16,24 @@ public class CircuitApp {
 
     public CircuitApp() {
 
-        interfaceUtilisateur2();
+        interfaceUtilisateur1();
     }
 
-    public String[] interfaceUtilisateur1() {
+    public void interfaceUtilisateur1() {
 
         String[] fichiers = new File(pathIn).list((fichiers_json, name) -> name.endsWith(".json"));
         System.out.println("Bonjour et bienvenue!\nVeuillez sélectionner un fichier en inscrivant son numéro correspondant.");
         for (int i = 0; i < fichiers.length; i++) {
             System.out.println("[" + (i + 1) + "]" + " : " + fichiers[i]);
         }
-        return fichiers;
-    }
-
-    public void interfaceUtilisateur2() {
-            String[] fichiers = interfaceUtilisateur1();
-            Scanner interfaceLecteur = new Scanner(System.in);
-            int choix = interfaceLecteur.nextInt();
+        Scanner interfaceLecteur = new Scanner(System.in);
+        int choix = interfaceLecteur.nextInt();
+        interfaceLecteur.nextLine();
+        while (choix <= 0 || choix > fichiers.length + 1) {
+            System.out.println("Choix Invalide.");
+            choix = interfaceLecteur.nextInt();
             interfaceLecteur.nextLine();
-            while (choix <= 0 || choix > fichiers.length + 1) {
-                System.out.println("Choix Invalide.");
-                choix = interfaceLecteur.nextInt();
-                interfaceLecteur.nextLine();
-            }
+        }
 
 
         CircuitBuilder builder = new CircuitBuilder(fichiers[choix - 1]);
@@ -46,16 +41,16 @@ public class CircuitApp {
         System.out.printf("Résistance totale du circuit: %.2f Ω", composant.calculerResistance());
         System.out.println("\n\nMerci d'avoir utilisé l'application! Voulez-vous:\n[R] Réutiliser l'application\n[Q] Quitter");
         String choix1;
-            while (true) {
-                choix1 = interfaceLecteur.nextLine();
-                if (choix1.equalsIgnoreCase("R") || choix1.equalsIgnoreCase("Q")) {
-                    break;
-                } else {
-                    System.out.println("Choix invalide.");
-                }
+        while (true) {
+            choix1 = interfaceLecteur.nextLine();
+            if (choix1.equalsIgnoreCase("R") || choix1.equalsIgnoreCase("Q")) {
+                break;
+            } else {
+                System.out.println("Choix invalide.");
             }
+        }
         if (choix1.equalsIgnoreCase("R")) {
-            interfaceUtilisateur2();
+            interfaceUtilisateur1();
         } else if (choix1.equalsIgnoreCase("Q")) {
             System.out.println("Au revoir!");
 
