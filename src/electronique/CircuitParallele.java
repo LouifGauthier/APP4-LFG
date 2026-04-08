@@ -7,8 +7,6 @@ import java.util.List;
 public class CircuitParallele extends Circuit {
     public CircuitParallele(List<Composant> composants) {
         super(composants);
-
-
         }
 
     public double calculerResistance() {
@@ -16,7 +14,7 @@ public class CircuitParallele extends Circuit {
         for (Composant composant : composants){
             resistance += (1.0/composant.calculerResistance());
         }
-        return Math.pow(resistance, -1);
+        return 1/resistance;
 
     }
 }

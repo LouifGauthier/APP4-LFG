@@ -15,12 +15,10 @@ public class CircuitApp {
     private static final String pathIn = System.getProperty("user.dir") + File.separator + "src" + File.separator + "donnees" + File.separator + "fichiers_json";
 
     public CircuitApp() {
-
         interfaceUtilisateur1();
     }
 
     public void interfaceUtilisateur1() {
-
         String[] fichiers = new File(pathIn).list((fichiers_json, name) -> name.endsWith(".json"));
         System.out.println("Bonjour et bienvenue!\nVeuillez sélectionner un fichier en inscrivant son numéro correspondant.");
         for (int i = 0; i < fichiers.length; i++) {
@@ -34,8 +32,6 @@ public class CircuitApp {
             choix = interfaceLecteur.nextInt();
             interfaceLecteur.nextLine();
         }
-
-
         CircuitBuilder builder = new CircuitBuilder(fichiers[choix - 1]);
         Composant composant = builder.construireCircuit(fichiers[choix - 1]);
         System.out.printf("Résistance totale du circuit: %.2f Ω", composant.calculerResistance());
